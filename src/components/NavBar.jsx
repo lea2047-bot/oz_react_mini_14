@@ -8,13 +8,12 @@ export default function NavBar() {
         <Link to="/" className="brand">🎬 Mini Movies</Link>
         <nav className="nav-right">
           <a
-            href="https://image.tmdb.org/t/p/w500"
+            href="https://developer.themoviedb.org/"
             target="_blank"
             rel="noreferrer"
             className="baseurl"
-            title="TMDB image base URL"
           >
-            img base: /t/p/w500
+            TMDB API Docs
           </a>
         </nav>
       </div>

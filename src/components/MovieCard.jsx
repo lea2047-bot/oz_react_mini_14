@@ -26,7 +26,7 @@ export default function MovieCard({ movie }) {
         <div className="title" title={title}>{title}</div>
         <div className="rating">
           <span className="star">★</span>
-          <span>{Number(vote_average).toFixed(3)}</span>
+          <span>{Number(vote_average || 0).toFixed(3)}</span>
         </div>
       </div>
     </div>
