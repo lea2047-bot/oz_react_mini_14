@@ -5,7 +5,6 @@ import kungfuDetail from '../../movieDetailData.json';
 
 const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
 
-// TMDB 장르 id → 한글명 매핑
 const GENRE_MAP = {
   28: '액션', 12: '모험', 16: '애니메이션', 35: '코미디', 80: '범죄',
   99: '다큐멘터리', 18: '드라마', 10751: '가족', 14: '판타지', 36: '역사',
@@ -13,10 +12,8 @@ const GENRE_MAP = {
   10770: 'TV 영화', 53: '스릴러', 10752: '전쟁', 37: '서부'
 };
 
-// id로 영화 하나 가져오기 (쿵푸팬더는 상세 json 우선)
 function getMovie(id) {
   if (String(kungfuDetail.id) === String(id)) {
-    // movieDetailData.json 구조를 그대로 호환
     return {
       id: kungfuDetail.id,
       title: kungfuDetail.title,
@@ -37,10 +34,7 @@ function getMovie(id) {
     title: fromList.title,
     original_title: fromList.original_title,
     overview: fromList.overview,
-    poster_path: fromList.poster_path,
-    backdrop_path: fromList.backdrop_path,
-    vote_average: fromList.vote_average,
-    // list에는 genre_ids만 있으니 매핑으로 이름 생성
+    poster_path: fromList.poster_path,    backdrop_path: fromList.backdrop_path,    vote_average: fromList.vote_average,
     genres: (fromList.genre_ids || []).map(gid => ({ id: gid, name: GENRE_MAP[gid] || String(gid) })),
   };
 }

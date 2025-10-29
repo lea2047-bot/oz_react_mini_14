@@ -11,7 +11,7 @@ export default function MovieCard({ movie }) {
     <div
       className="card"
       role="button"
-      onClick={() => navigate(`/details/${id}`)}  // ✅ id 포함
+      onClick={() => navigate(`/details/${id}`)}  
       title={`${title} 상세보기`}
     >
       <div className="poster-wrap">
