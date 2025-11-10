@@ -3,7 +3,7 @@ import movieListData from '../movieListData.json';
 import MovieCard from './components/MovieCard.jsx';
 
 export default function App() {
-  const list = movieListData?.results ?? [];
+  const list = fetchPopular(); [];
 
   return (
     <section>

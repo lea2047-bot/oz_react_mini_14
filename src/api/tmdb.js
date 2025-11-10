@@ -1,3 +1,4 @@
+// src/api/tmdb.js
 const BASE = 'https://api.themoviedb.org/3';
 const IMG  = 'https://image.tmdb.org/t/p';
 
@@ -12,7 +13,7 @@ export async function fetchPopular(page = 1, lang = 'ko-KR') {
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`TMDB 요청 실패: ${res.status}`);
   const data = await res.json();
-  return (data.results ?? []).filter(m => m?.adult === false);
+return (data.results ?? []).filter(m => m?.adult === false);
 }
 
 // 영화 상세

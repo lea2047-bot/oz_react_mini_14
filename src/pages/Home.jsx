@@ -1,6 +1,7 @@
+import React from 'react'; 
 import { useEffect, useState } from 'react';
 import { fetchPopular } from '../api/tmdb';
-import MovieCard from '../components/MovieCard'; // 이거 꼭 있어야 영화 카드 보임
+import MovieCard from '../components/MovieCard.jsx';
 
 export default function Home() {
   const [list, setList] = useState([]);
@@ -10,7 +11,7 @@ export default function Home() {
     (async () => {
       try {
         const data = await fetchPopular(1, 'ko-KR');
-        setList(data); // 성인물 필터는 tmdb.js 안에서 처리됨
+        setList(data);
       } catch (e) {
         setErr(String(e));
       }
@@ -22,7 +23,7 @@ export default function Home() {
 
   return (
     <section>
-      <h1 className="visually-hidden">Movies</h1>
+      <h1 className="visually-hidden">Popular Movies</h1>
       <div className="grid">
         {list.map((m) => (
           <MovieCard key={m.id} movie={m} />
