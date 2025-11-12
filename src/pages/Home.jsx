@@ -1,25 +1,16 @@
-import React from 'react'; 
-import { useEffect, useState } from 'react';
+import React from 'react';
 import { fetchPopular } from '../api/tmdb';
 import MovieCard from '../components/MovieCard.jsx';
+import useFetch from '../hooks/useFetch';
 
 export default function Home() {
-  const [list, setList] = useState([]);
-  const [err, setErr] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await fetchPopular(1, 'ko-KR');
-        setList(data);
-      } catch (e) {
-        setErr(String(e));
-      }
-    })();
-  }, []);
+  const { data: list, error: err, loading } = useFetch(
+    () => fetchPopular(1, 'ko-KR'),
+    [] 
+  );
 
   if (err) return <p style={{ color: 'tomato', padding: 24 }}>에러: {err}</p>;
-  if (list.length === 0) return <p style={{ padding: 24 }}>로딩 중...</p>;
+  if (loading) return <p style={{ padding: 24 }}>로딩 중...</p>;
 
   return (
     <section>
@@ -32,3 +23,4 @@ export default function Home() {
     </section>
   );
 }
+
