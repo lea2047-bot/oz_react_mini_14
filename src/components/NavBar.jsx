@@ -7,7 +7,7 @@ export default function NavBar() {
   return (
     <header className="navbar">
       <div className="nav-inner">
-        <Link to="/" className="brand">
+        <Link to="/" className="brand text-red-600">
           🎬 Mini Movies
         </Link>
 
@@ -18,7 +18,7 @@ export default function NavBar() {
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           />
-          
+
         <nav className="nav-right">
           <a
             href="https://developer.themoviedb.org/"
