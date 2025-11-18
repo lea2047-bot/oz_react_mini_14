@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import useDebounce from "../hooks/useDebounce";
 
 export default function NavBar() {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
+  const debouncedKeyword = useDebounce(keyword, 500);
+  const [, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (debouncedKeyword && debouncedKeyword.trim() !== "") {
+      setSearchParams({ q: debouncedKeyword.trim() });
+    } else {
+      setSearchParams({});
+    }
+  }, [debouncedKeyword, setSearchParams]);
 
   return (
     <header className="navbar">
       <div className="nav-inner">
-        <Link to="/" className="brand text-red-600">
+        <Link to="/" className="text-red-600">
           🎬 Mini Movies
         </Link>
 
@@ -17,7 +28,7 @@ export default function NavBar() {
           placeholder="영화 제목을 입력하세요..."
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          />
+        />
 
         <nav className="nav-right">
           <a
