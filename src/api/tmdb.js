@@ -27,7 +27,7 @@ export async function fetchSearchMovies(query, page = 1, lang = 'ko-KR') {
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`TMDB 검색 요청 실패: ${res.status}`);
   const data = await res.json();
-  return data.results ?? [];
+  return data.results ?? []; 
 }
 
 export function imgUrl(path, size = 'w500') {

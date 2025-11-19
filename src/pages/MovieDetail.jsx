@@ -2,22 +2,14 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMovieDetail, imgUrl } from '../api/tmdb';
+import useFetch from '../hooks/useFetch';
 
 export default function MovieDetail() {
   const { id } = useParams();
-  const [data, setData] = useState(null);
-  const [err, setErr] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const d = await fetchMovieDetail(id, 'ko-KR');
-        setData(d);
-      } catch (e) {
-        setErr(String(e));
-      }
-    })();
-  }, [id]);
+  const { data, error: err, loading } = useFetch(
+    () => fetchMovieDetail(id, 'ko-KR'),
+    [id]
+  );
 
   if (err) return <p style={{ color: 'tomato' }}>에러: {err}</p>;
   if (!data) return <p>로딩 중...</p>;
