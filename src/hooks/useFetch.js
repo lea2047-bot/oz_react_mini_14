@@ -6,7 +6,7 @@ export default function useFetch(asyncFunc, deps = []) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let isMounted = true; // 언마운트 시 setState 방지
+    let isMounted = true;
     (async () => {
       try {
         const result = await asyncFunc();
