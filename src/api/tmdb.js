@@ -8,6 +8,9 @@ const headers = {
 
 async function callTMDB(endpoint, params = {}) {
   const url = new URL(`${BASE}${endpoint}`);
+  Object.entries(params).forEach(([key, value]) =>
+    url.searchParams.set(key, value)
+  );
 export async function fetchPopular(page = 1, lang = 'ko-KR') {
   const url = `${BASE}/movie/popular?language=${lang}&page=${page}`;
   const res = await fetch(url, { headers });
