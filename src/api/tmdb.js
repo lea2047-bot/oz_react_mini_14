@@ -6,6 +6,8 @@ const headers = {
   Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
 };
 
+async function callTMDB(endpoint, params = {}) {
+  const url = new URL(`${BASE}${endpoint}`);
 export async function fetchPopular(page = 1, lang = 'ko-KR') {
   const url = `${BASE}/movie/popular?language=${lang}&page=${page}`;
   const res = await fetch(url, { headers });
