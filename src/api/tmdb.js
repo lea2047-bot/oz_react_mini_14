@@ -11,28 +11,30 @@ async function callTMDB(endpoint, params = {}) {
   Object.entries(params).forEach(([key, value]) =>
     url.searchParams.set(key, value)
   );
-export async function fetchPopular(page = 1, lang = 'ko-KR') {
-  const url = `${BASE}/movie/popular?language=${lang}&page=${page}`;
+
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`TMDB 요청 실패: ${res.status}`);
-  const data = await res.json();
-  return (data.results ?? []).filter((m) => m?.adult === false);
+  return res.json();
+}
+
+export async function fetchPopular(page = 1, lang = 'ko-KR') {
+  const data = await callTMDB('/movie/popular', { language: lang, page });
+  return (data.results).filter((m) => m?.adult === false);
 }
 
 export async function fetchMovieDetail(id, lang = 'ko-KR') {
-  const url = `${BASE}/movie/${id}?language=${lang}`;
-  const res = await fetch(url, { headers });
-  if (!res.ok) throw new Error(`TMDB 상세 요청 실패: ${res.status}`);
-  return await res.json();
+  return callTMDB(`/movie/${id}`, { language: lang });
 }
 
 export async function fetchSearchMovies(query, page = 1, lang = 'ko-KR') {
   if (!query || query.trim() === '') return [];
-  const url = `${BASE}/search/movie?query=${encodeURIComponent(query)}&language=${lang}&page=${page}&include_adult=false`;
-  const res = await fetch(url, { headers });
-  if (!res.ok) throw new Error(`TMDB 검색 요청 실패: ${res.status}`);
-  const data = await res.json();
-  return data.results ?? []; 
+  const data = await callTMDB('/search/movie', {
+    query: query.trim(),
+    language: lang,
+    page,
+    include_adult: 'false',
+  });
+  return data.results ;
 }
 
 export function imgUrl(path, size = 'w500') {
