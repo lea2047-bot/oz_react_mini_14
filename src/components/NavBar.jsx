@@ -16,15 +16,14 @@ export default function NavBar() {
   }, [debouncedKeyword, setSearchParams]);
 
   return (
-    <header className="navbar">
-      <div className="nav-inner">
+    <header className="w-full bg-gray-900 text-white shadow">
+    <div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
         <Link to="/" className="text-red-600">
           🎬 Mini Movies
         </Link>
 
         <input
           type="text"
-          className="search-input"
           placeholder="영화 제목을 입력하세요..."
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
@@ -35,7 +34,6 @@ export default function NavBar() {
             href="https://developer.themoviedb.org/"
             target="_blank"
             rel="noreferrer"
-            className="baseurl"
           >
             TMDB API Docs
           </a>

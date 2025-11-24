@@ -28,6 +28,40 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Apple SD Gothic Neo", sans-serif;
 }
 
+.detail-genres {
+  padding: 10px 12px;
+  background: var(--panel-2);
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+.detail-overview {
+  padding: 14px 16px;
+  background: var(--panel-2);
+  border-radius: 12px;
+  color: #d7dbe3;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .detail-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-left {
+    order: 1;
+  }
+
+  .detail-right {
+    order: 2;
+  }
+
+  .detail-poster {
+    max-width: 320px;
+  }
+}
+
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -203,37 +237,3 @@ body {
   color: #f0c419;
   font-weight: 800;
 }
-
-.detail-genres {
-  padding: 10px 12px;
-  background: var(--panel-2);
-  border-radius: 12px;
-  color: var(--muted);
-}
-
-.detail-overview {
-  padding: 14px 16px;
-  background: var(--panel-2);
-  border-radius: 12px;
-  color: #d7dbe3;
-  line-height: 1.6;
-}
-
-@media (max-width: 900px) {
-  .detail-wrap {
-    grid-template-columns: 1fr;
-  }
-
-  .detail-left {
-    order: 1;
-  }
-
-  .detail-right {
-    order: 2;
-  }
-
-  .detail-poster {
-    max-width: 320px;
-  }
-}
-

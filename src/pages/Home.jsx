@@ -2,15 +2,14 @@
   import { useSearchParams } from 'react-router-dom';
   import { fetchPopular, fetchSearchMovies } from '../api/tmdb';
   import MovieCard from '../components/MovieCard.jsx';
-  import useFetch from '../hooks/useFetch';
-
+  import useFetch from '../hooks/useFetch'; 
+  
   export default function Home() {
     const [searchParams] = useSearchParams();
     const q = (searchParams.get('q') || '').trim();
 
     const { data: list, error: err, loading } = useFetch(
       () => (q ? fetchSearchMovies(q, 1, 'ko-KR') : fetchPopular(1, 'ko-KR')),
-      [q] 
     );
 
     if (err)
