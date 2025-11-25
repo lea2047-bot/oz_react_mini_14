@@ -12,8 +12,9 @@ export default function MovieCard({ movie }) {
   role="button"
   onClick={() => navigate(`/details/${id}`)}
   title={`${title} 상세보기`}
-  className="bg-black rounded-lg shadow"
->
+  className=' bg-black rounded-lg shadow hover:scale-105 transition-all duration-200 cursor-pointer'
+  >
+
   <div className="w-full aspect-[2/3] bg-gray-200">
     {poster_path ? (
      <img

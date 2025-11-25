@@ -23,7 +23,9 @@
   return <p className="p-6">로딩 중...</p>;
     return (
       <section>
-        <h1 className="visually-hidden">{q ? `Search: ${q}` : 'Popular Movies'}</h1>
+        <h1 className="sr-only">
+          {q ? `Search: ${q}` : 'Popular Movies'}
+        </h1>
 
 {list.length === 0 && q && (
   <p className="p-6">

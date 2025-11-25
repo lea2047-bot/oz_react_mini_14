@@ -15,17 +15,16 @@ export default function MovieDetail() {
   if (!data) return <p>로딩 중...</p>;
 
   return (
-    <section className="detail-wrap">
-      <div className="detail-left">
-        {data.poster_path ? (
-          <img
-            className="detail-poster"
-            src={imgUrl(data.poster_path, 'w500')}
-            alt={data.title}
+    <section className="flex gap-6">
+  <div>
+    <img
+      src={imgUrl(data.poster_path, 'w500')}
+      alt={data.title}
+      className="w-[300px] rounded-lg shadow-lg object-cover"
           />
-        ) : (
+         : (
           <div className="detail-poster placeholder">No Poster</div>
-        )}
+        )
       </div>
 
       <div className="detail-right">
