@@ -1,51 +1,65 @@
-import React from 'react'; 
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { fetchMovieDetail, imgUrl } from '../api/tmdb';
 import useFetch from '../hooks/useFetch';
+import { fetchMovieDetail, imgUrl } from '../api/tmdb';
 
 export default function MovieDetail() {
   const { id } = useParams();
-  const { data, error: err, loading } = useFetch(
+  const { data, error: err } = useFetch(
     () => fetchMovieDetail(id, 'ko-KR'),
     [id]
   );
 
-  if (err) return <p style={{ color: 'tomato' }}>에러: {err}</p>;
+  if (err) return <p style={{ color: 'tomato' }}>에러: {String(err)}</p>;
   if (!data) return <p>로딩 중...</p>;
 
   return (
-    <section className="flex gap-6">
-  <div>
-    <img
-      src={imgUrl(data.poster_path, 'w500')}
-      alt={data.title}
-      className="w-[300px] rounded-lg shadow-lg object-cover"
+    <section className="flex gap-10 mt-6">
+      <div>
+        {data.poster_path ? (
+          <img
+            src={imgUrl(data.poster_path, 'w500')}
+            alt={data.title}
+            className="w-[300px] rounded-lg shadow-lg object-cover"
           />
-         : (
-          <div className="detail-poster placeholder">No Poster</div>
-        )
+        ) : (
+          <div className="w-[300px] h-[450px] rounded-lg bg-gray-700 flex items-center justify-center">
+            No Poster
+          </div>
+        )}
       </div>
 
-      <div className="detail-right">
-        <div className="detail-top">
-          <h1 className="detail-title">{data.title}</h1>
-          <div className="detail-score">
-            <span className="star">★</span>{data.vote_average}
+      <div className="flex flex-col gap-4 flex-1">
+        <div className="flex items-center justify-between">
+          <h1 className="text-[28px] font-bold leading-tight">{data.title}</h1>
+
+          <div className="flex items-center gap-2 text-yellow-400 font-extrabold">
+            <span className="text-base relative">★</span>
+            <span>{data.vote_average}</span>
           </div>
         </div>
 
-        <div className="detail-genres">
-          {data.genres?.map(g => g.name).join(' · ') || '장르 정보 없음'}
+        <div
+          className="px-3 py-2 rounded-xl text-sm"
+          style={{ background: "var(--panel-2)", color: "var(--muted)" }}
+        >
+          {data.genres?.map((g) => g.name).join(" · ") || "장르 정보 없음"}
         </div>
 
-        <div className="detail-overview">{data.overview || '줄거리 정보 없음'}</div>
+        <div
+          className="px-4 py-3 rounded-xl leading-relaxed min-h-[150px]"
+          style={{ background: "var(--panel-2)", color: "#d7dbe3" }}
+        >
+          {data.overview || "줄거리 정보 없음"}
+        </div>
 
-        <Link to="/" className="btn-back" style={{ marginTop: 20, display: 'inline-block', color: '#ccc' }}>
+        <Link
+          to="/"
+          className="mt-3 inline-block text-[#ccc]"
+        >
           ← 돌아가기
         </Link>
       </div>
     </section>
   );
 }
-

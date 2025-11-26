@@ -23,24 +23,22 @@ export default function NavBar() {
         </Link>
 
         <input
-          type="text"
-          placeholder="영화 제목을 입력하세요..."
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-
-        <nav className="nav-right">
-          <a
-            href="https://developer.themoviedb.org/"
-            target="_blank"
-            rel="noreferrer"
-          >
+         type="text"
+         placeholder="영화 제목을 입력하세요..."
+         value={keyword}
+         onChange={(e) => setKeyword(e.target.value)}
+         className=" w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 text-gray-200"
+         />
+          <nav className="ml-auto">
+           <a
+             href="https://developer.themoviedb.org/"
+             target="_blank"
+             rel="noreferrer"
+            >
             TMDB API Docs
           </a>
         </nav>
       </div>
-    </header>
+      </header>
   );
 }
-
-
