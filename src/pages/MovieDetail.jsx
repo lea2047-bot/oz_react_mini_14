@@ -10,7 +10,8 @@ export default function MovieDetail() {
     [id]
   );
 
-  if (err) return <p style={{ color: 'tomato' }}>에러: {String(err)}</p>;
+  if (err)
+  return <p className="text-red-400">에러: {String(err)}</p>;
   if (!data) return <p>로딩 중...</p>;
 
   return (
@@ -39,17 +40,13 @@ export default function MovieDetail() {
           </div>
         </div>
 
-        <div
-          className="px-3 py-2 rounded-xl text-sm"
-          style={{ background: "var(--panel-2)", color: "var(--muted)" }}
-        >
+        <div className="px-4 py-3 rounded-xl leading-relaxed min-h-[150px] bg-(--panel-2) text-[#d7dbe3]">
+
           {data.genres?.map((g) => g.name).join(" · ") || "장르 정보 없음"}
         </div>
 
-        <div
-          className="px-4 py-3 rounded-xl leading-relaxed min-h-[150px]"
-          style={{ background: "var(--panel-2)", color: "#d7dbe3" }}
-        >
+        <div className="px-4 py-3 rounded-xl leading-relaxed min-h-[150px]"style={{ background: "var(--panel-2)", color: "#d7dbe3" }}>
+
           {data.overview || "줄거리 정보 없음"}
         </div>
 

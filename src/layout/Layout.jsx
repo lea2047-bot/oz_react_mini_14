@@ -4,11 +4,12 @@ import NavBar from '../components/NavBar.jsx';
 
 export default function Layout() {
   return (
-    <div className="app-shell">
-      <NavBar />
-      <main className="container">
-        <Outlet />
-      </main>
-    </div>
-  );
+  <div className="min-h-full flex flex-col">
+    <NavBar />
+    <main className=" mx-auto w-[min(1200px,92vw)] mt-7 mb-20">
+      <Outlet />
+    </main>
+  </div>
+);
+
 }

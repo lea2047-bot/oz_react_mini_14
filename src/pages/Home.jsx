@@ -33,7 +33,7 @@
   </p>
 )}
 
-        <div className="grid">
+        <div className="grid gap-[22px] grid-cols-[repeat(auto-fill,minmax(180px,1fr))]"> 
           {list.map((m) => (
             <MovieCard key={m.id} movie={m} />
           ))}
