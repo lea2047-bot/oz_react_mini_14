@@ -7,16 +7,15 @@ const headers = {
   Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
 };
 
-async function callTMDB(endpoint, params = {}) {
-  const url = new URL(`${BASE}${endpoint}`);
-  Object.entries(params).forEach(([key, value]) =>
-    url.searchParams.set(key, value)
-  );
+const tmdb = axios.create({
+  baseURL: BASE,
+  headers,
+ });
 
-  const res = await fetch(url, { headers });
-  if (!res.ok) throw new Error(`TMDB 요청 실패: ${res.status}`);
-  return res.json();
-}
+async function callTMDB(endpoint, params = {}) {
+  const res = await tmdb.get(endpoint, { params });
+  return res.data;
+  }
 
 export async function fetchPopular(page = 1, lang = 'ko-KR') {
   const data = await callTMDB('/movie/popular', { language: lang, page });
